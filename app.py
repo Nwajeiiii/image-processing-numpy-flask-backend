@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, request, send_file, jsonify
 import numpy as np
 from PIL import Image
@@ -88,5 +90,6 @@ def upload():
 
     return send_file(img_io, mimetype='image/png')
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))  # Use Render's assigned port
+    app.run(host="0.0.0.0", port=port)
